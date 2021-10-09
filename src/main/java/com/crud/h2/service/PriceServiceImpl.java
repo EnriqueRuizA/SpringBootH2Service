@@ -18,4 +18,8 @@ public class PriceServiceImpl {
 	public List<Price> getPrice(Date validationDate, Long productId, int brandId) {
 		return dao.getPriceList(validationDate, productId, brandId);
 	}
+
+	public Object getAllPrices() {
+		return dao.getAllPrices();
+	}
 }

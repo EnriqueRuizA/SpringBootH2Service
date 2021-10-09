@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.crud.h2.modelDAO.PricesDaoImpl;
+
 @SpringBootApplication
 public class SpringBootH2ServiceApplication implements CommandLineRunner {
 
@@ -20,6 +22,7 @@ public class SpringBootH2ServiceApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		resetTable();
 		initialInserts();
+		
 	}
 
 	private void initialInserts() {

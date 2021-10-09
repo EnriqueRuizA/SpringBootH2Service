@@ -23,4 +23,11 @@ public class PricesDaoImpl implements PricesDao {
 				
 		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
 	}
+	
+	
+	@Override
+	public List<Price> getAllPrices() {
+		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE");		
+		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
+	}
 }

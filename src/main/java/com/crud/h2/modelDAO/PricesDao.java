@@ -17,5 +17,5 @@ public interface PricesDao {
 	 * @return List [Price]
 	 */
 	public List<Price> getPriceList(Date validationDate, Long productId, int brandId);
-	
+	public List<Price> getAllPrices();
 }

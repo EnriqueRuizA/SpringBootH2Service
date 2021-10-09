@@ -18,7 +18,15 @@ public class PriceController {
 	public String precio(Model model) {
 		
 		model.addAttribute("precio", service.getPrice(null, null, 0));
-		return "index";
+		return "index2";
+		
+	}
+	
+	
+	@GetMapping("/listaPrecios")
+	public String listaPrecios(Model model) {
+		model.addAttribute("listaPrecios", service.getAllPrices());
+		return "listaPrecios";
 		
 	}
 	
