@@ -20,28 +20,7 @@ public class PricesDaoImpl implements PricesDao {
 	public List<Price> getPriceList(Date validationDate, Long productId, int brandId) {
 		//TODO implementar método con variables
 		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE");
-		
-		List<Price> priceList = template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
-		
-		
-		return priceList;
+				
+		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
 	}
-
-	@Override
-	public int addPrice(Price p) {
-		return 0;
-	}
-
-	@Override
-	public int updatePrice(Price p) {
-		return 0;
-	}
-
-	@Override
-	public int deletePrice(int id) {
-		return 0;
-	}
-
-	
-
 }
