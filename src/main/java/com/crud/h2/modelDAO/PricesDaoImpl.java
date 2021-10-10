@@ -1,5 +1,8 @@
 package com.crud.h2.modelDAO;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -15,19 +18,24 @@ public class PricesDaoImpl implements PricesDao {
 
 	@Autowired
 	private JdbcTemplate template;
-	
+
 	@Override
-	public List<Price> getPriceList(Date validationDate, Long productId, int brandId) {
-		//TODO implementar método con variables
-		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE");
-				
+	public List<Price> getPriceList(Date validationDate, Long productId, int brandId) throws ParseException {
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date = dateFormat.format(validationDate);
+
+		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE WHERE ");
+		sql.append("startDate <= '" + date + "'");
+		sql.append(" AND ");
+		sql.append("endDate > '" + date + "'");
+		
 		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
 	}
-	
-	
+
 	@Override
 	public List<Price> getAllPrices() {
-		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE");		
+		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE");
 		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
 	}
 }

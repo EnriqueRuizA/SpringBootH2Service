@@ -89,7 +89,9 @@ public class SpringBootH2ServiceApplication implements CommandLineRunner {
 	}
 
 	private void resetTable() {
+		
 		String drop = "DROP TABLE PRICE IF EXISTS";
+		
 		StringBuilder create = new StringBuilder("CREATE TABLE PRICE(");
 
 		create.append("id INTEGER(10) PRIMARY KEY auto_increment,");

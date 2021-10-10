@@ -1,5 +1,6 @@
 package com.crud.h2.service;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class PriceServiceImpl {
 	@Autowired
 	private PricesDao dao;
 
-	public List<Price> getPrice(Date validationDate, Long productId, int brandId) {
+	public List<Price> getPrice(Date validationDate, Long productId, int brandId) throws ParseException {
 		return dao.getPriceList(validationDate, productId, brandId);
 	}
 

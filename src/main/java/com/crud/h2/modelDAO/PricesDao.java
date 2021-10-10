@@ -1,5 +1,6 @@
 package com.crud.h2.modelDAO;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,8 @@ public interface PricesDao {
 	 * @param productId
 	 * @param brandId
 	 * @return List [Price]
+	 * @throws ParseException 
 	 */
-	public List<Price> getPriceList(Date validationDate, Long productId, int brandId);
+	public List<Price> getPriceList(Date validationDate, Long productId, int brandId) throws ParseException;
 	public List<Price> getAllPrices();
 }
