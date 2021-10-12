@@ -41,13 +41,13 @@ In order to be able to launch the project once downloaded :
 
         http://localhost:8080/listaPrecios
         
-![](../service/img/listaPrecios.jpg "listaPrecios")
+![](https://raw.githubusercontent.com/EnriqueRuizA/SpringBootH2Service/main/img/listaPrecios.jpg "listaPrecios")
 
  or
  
         http://localhost:8080/h2
      
-![](../service/img/h2.jpg "h2")
+![](https://raw.githubusercontent.com/EnriqueRuizA/SpringBootH2Service/main/img/h2.jpg "h2")
 
         
 * To see the result of the query in both the browser and Postman:
