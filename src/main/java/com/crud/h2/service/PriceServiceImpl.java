@@ -20,7 +20,7 @@ public class PriceServiceImpl {
 		return dao.getPriceList(validationDate, productId, brandId);
 	}
 
-	public Object getAllPrices() {
+	public List<Price> getAllPrices() {
 		return dao.getAllPrices();
 	}
 }

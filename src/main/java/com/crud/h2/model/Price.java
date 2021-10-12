@@ -1,21 +1,36 @@
 package com.crud.h2.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
+@ToString
+@NoArgsConstructor
 public class Price {
 	private int id;
 	private int brandId;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date startDate;
-	private Date endDate;
+	private LocalDateTime startDate;
+	private LocalDateTime endDate;
 	private int priceList;
 	private Long productId;
+	private int priority;
+	private Float price;
+	private String currency;
+	private Date lastUpdate;
+	private String lastUpdateBy;
+
 
 	public int getId() {
 		return id;
@@ -33,19 +48,19 @@ public class Price {
 		this.brandId = brandId;
 	}
 
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(LocalDateTime localDateTime) {
+		this.startDate = localDateTime;
 	}
 
-	public Date getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
 
@@ -104,10 +119,4 @@ public class Price {
 	public void setLastUpdateBy(String lastUpdateBy) {
 		this.lastUpdateBy = lastUpdateBy;
 	}
-
-	private int priority;
-	private Float price;
-	private String currency;
-	private Date lastUpdate;
-	private String lastUpdateBy;
 }
