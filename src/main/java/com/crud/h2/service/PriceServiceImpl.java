@@ -11,16 +11,20 @@ import com.crud.h2.model.Price;
 import com.crud.h2.modelDAO.PricesDao;
 
 @Service
-public class PriceServiceImpl {
+public class PriceServiceImpl implements PriceService {
 
 	@Autowired
 	private PricesDao dao;
 
 	public List<Price> getPrice(Date validationDate, Long productId, int brandId) throws ParseException {
-		return dao.getPriceList(validationDate, productId, brandId);
+		return dao.getFilteredPriceList(validationDate, productId, brandId);
 	}
 
 	public List<Price> getAllPrices() {
 		return dao.getAllPrices();
+	}
+
+	public List<Price> getFilteredPriceList(Date validationDate, Long productId, int brandId) throws ParseException {
+		return dao.getFilteredPriceList(validationDate, productId, brandId);
 	}
 }

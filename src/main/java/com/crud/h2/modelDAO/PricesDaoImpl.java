@@ -20,7 +20,13 @@ public class PricesDaoImpl implements PricesDao {
 	private JdbcTemplate template;
 
 	@Override
-	public List<Price> getPriceList(Date validationDate, Long productId, int brandId) throws ParseException {
+	public List<Price> getAllPrices() {
+		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE");
+		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
+	}
+
+	@Override
+	public List<Price> getFilteredPriceList(Date validationDate, Long productId, int brandId) throws ParseException {
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = dateFormat.format(validationDate);
@@ -29,13 +35,7 @@ public class PricesDaoImpl implements PricesDao {
 		sql.append("startDate <= '" + date + "'");
 		sql.append(" AND ");
 		sql.append("endDate > '" + date + "'");
-		
-		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
-	}
 
-	@Override
-	public List<Price> getAllPrices() {
-		StringBuilder sql = new StringBuilder("SELECT * FROM PRICE");
 		return template.query(sql.toString(), new BeanPropertyRowMapper<Price>(Price.class));
 	}
 }

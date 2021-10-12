@@ -7,7 +7,7 @@ import java.util.List;
 import com.crud.h2.model.Price;
 
 public interface PricesDao {
-	
+
 	/**
 	 * 
 	 * Método central de la prueba
@@ -15,9 +15,11 @@ public interface PricesDao {
 	 * @param validationDate
 	 * @param productId
 	 * @param brandId
-	 * @return List [Price]
-	 * @throws ParseException 
+	 * @return List [PriceWithRestrictions]
+	 * @throws ParseException
 	 */
-	public List<Price> getPriceList(Date validationDate, Long productId, int brandId) throws ParseException;
-	public List<Price> getAllPrices();
+	List<Price> getFilteredPriceList(Date validationDate, Long productId, int brandId) throws ParseException;
+
+	List<Price> getAllPrices();
+
 }
