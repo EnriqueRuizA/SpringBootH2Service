@@ -37,11 +37,17 @@ In order to be able to launch the project once downloaded :
         
 * Launch the project
 
-* To see the contents of the table:
+* To see the REST response:
 
         http://localhost:8080/listaPrecios
         
-![](https://raw.githubusercontent.com/EnriqueRuizA/SpringBootH2Service/main/img/listaPrecios.jpg "listaPrecios")
+ ![](https://raw.githubusercontent.com/EnriqueRuizA/SpringBootH2Service/main/img/listaPrecios.jpg "listaPrecios")
+
+* To see the contents of the table:
+
+        http://localhost:8080/listaPreciosJSP
+        
+![](https://raw.githubusercontent.com/EnriqueRuizA/SpringBootH2Service/main/img/listaPreciosJSP.jpg "listaPreciosJSP")
 
  or
  
