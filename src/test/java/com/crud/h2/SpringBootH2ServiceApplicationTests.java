@@ -14,16 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.crud.h2.controller.PriceRESTController;
+import com.crud.h2.model.Price;
 import com.crud.h2.model.PriceWithRestrictions;
 
 @SpringBootTest
 class SpringBootH2ServiceApplicationTests {
 
 	@Autowired
-	PriceRESTController controller;
+	PriceRESTController service;
 
 	@Test
-	void validarRespuestaConocida() throws Exception {
+	void validarKnownFilteredPrice() throws Exception {
 
 		// parámetros consultados
 		String date = "2020-06-14 00:00:00";
@@ -36,7 +37,7 @@ class SpringBootH2ServiceApplicationTests {
 		Timestamp startDate = new Timestamp(stringToMilis("2020/06/14 00:00:0"));
 		Timestamp endDate = new Timestamp(stringToMilis("2020/12/31 23:59:59"));
 		
-		List<PriceWithRestrictions> response = controller.filteredPrices(date, productId, brandId);
+		List<PriceWithRestrictions> response = service.filteredPrices(date, productId, brandId);
 		assertThat(response.get(0).getBrandId()).isEqualTo(response.get(0).getBrandId());
 		assertThat(response.get(0).getBrandId()).isEqualTo(brandId);
 		assertThat(response.get(0).getPrice()).isEqualTo(price);
@@ -44,40 +45,61 @@ class SpringBootH2ServiceApplicationTests {
 		assertThat(response.get(0).getEndDate()).isEqualTo(endDate);
 		assertThat(response.get(0).getPriceList()).isEqualTo(priceList);
 		assertThat(response.get(0).getProductId()).isEqualTo(productId);
-
+		
 	}
 	
 	@Test
-	void validarRangoDeFechas1() throws Exception {
+	void validateAllPrices() throws Exception {
+		List<Price> response = service.allPrices();
+		assertThat(response).isNotNull();
+		for(Price price : response) {
+			assertThat(price.getBrandId()).isEqualTo(response.get(0).getBrandId());
+			assertThat(price.getBrandId()).isNotZero();
+			assertThat(price.getPrice()).isNotNull();
+			assertThat(price.getStartDate()).isNotNull();
+			assertThat(price.getEndDate()).isNotNull();
+			assertThat(price.getPriceList()).isNotZero();
+			assertThat(price.getProductId()).isNotNull();
+		}
+	}
+	
+	@Test
+	void dateRange1() throws Exception {
 		validarFechasPrecioCoherente("2020-06-14 10:00:00",  35455L,  1);
 	}
 	
 	
 	@Test
-	void validarRangoDeFechas2() throws Exception {
+	void dateRange2() throws Exception {
 		validarFechasPrecioCoherente("2020-06-14 16:00:00",  35455L,  1);
 	}
 	
 	@Test
-	void validarRangoDeFechas3() throws Exception {
+	void dateRange3() throws Exception {
 		validarFechasPrecioCoherente("2020-06-14 21:00:00",  35455L,  1);
 	}
 	
 	@Test
-	void validarRangoDeFechas4() throws Exception {
+	void dateRange4() throws Exception {
 		validarFechasPrecioCoherente("2020-06-15 10:00:00",  35455L,  1);
 	}
 	
 	@Test
-	void validarRangoDeFechas5() throws Exception {
+	void dateRange5() throws Exception {
 		validarFechasPrecioCoherente("2020-06-16 21:00:00",  35455L,  1);
 	}
 
 	
 	
-	
+	/**
+	 * 
+	 * @param date
+	 * @param productId
+	 * @param brandId
+	 * @throws Exception
+	 */
 	void validarFechasPrecioCoherente(String date, Long productId, int brandId) throws Exception {
-		List<PriceWithRestrictions> response = controller.filteredPrices(date, productId, brandId);
+		List<PriceWithRestrictions> response = service.filteredPrices(date, productId, brandId);
 		assertThat(response.get(0).getBrandId()).isEqualTo(response.get(0).getBrandId());
 		assertThat(response.get(0).getBrandId()).isEqualTo(brandId);
 		assertThat(stringToDate(date)).isBetween(response.get(0).getStartDate(), response.get(0).getEndDate());

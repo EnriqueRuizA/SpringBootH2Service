@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
 public class Price {
 	private int id;
 	private int brandId;

@@ -18,10 +18,6 @@ public class PriceServiceImpl implements PriceService {
 	@Autowired
 	private PricesDao dao;
 
-	public List<Price> getPrice(Date validationDate, Long productId, int brandId) throws ParseException {
-		return dao.getFilteredPriceList(validationDate, productId, brandId);
-	}
-
 	public List<Price> getAllPrices() {
 		return dao.getAllPrices();
 	}
