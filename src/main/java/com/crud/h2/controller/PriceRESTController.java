@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crud.h2.model.Price;
+import com.crud.h2.model.PriceModel;
 import com.crud.h2.model.PriceWithRestrictions;
 import com.crud.h2.service.PriceService;
 
@@ -33,13 +33,13 @@ public class PriceRESTController {
 			@PathVariable int brandId) throws ParseException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date dateF = dateFormat.parse(date);
-		List<Price> list = service.getFilteredPriceList(dateF, productId, brandId);
+		List<PriceModel> list = service.getFilteredPriceList(dateF, productId, brandId);
 
 		return service.priceToPriceWithRestrictions(list);
 	}
 
 	@GetMapping("/listaPrecios")
-	public List<Price> allPrices() {
+	public List<PriceModel> allPrices() {
 		return service.getAllPrices();
 	}
 }

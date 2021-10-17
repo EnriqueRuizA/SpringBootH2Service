@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.crud.h2.controller.PriceRESTController;
-import com.crud.h2.model.Price;
+import com.crud.h2.model.PriceModel;
 import com.crud.h2.model.PriceWithRestrictions;
 
 @SpringBootTest
@@ -50,12 +50,12 @@ class SpringBootH2ServiceApplicationTests {
 	
 	@Test
 	void validateAllPrices() throws Exception {
-		List<Price> response = service.allPrices();
+		List<PriceModel> response = service.allPrices();
 		assertThat(response).isNotNull();
-		for(Price price : response) {
+		for(PriceModel price : response) {
 			assertThat(price.getBrandId()).isEqualTo(response.get(0).getBrandId());
 			assertThat(price.getBrandId()).isNotZero();
-			assertThat(price.getCurrentPrice()).isNotNull();
+			assertThat(price.getPrice()).isNotNull();
 			assertThat(price.getStartDate()).isNotNull();
 			assertThat(price.getEndDate()).isNotNull();
 			assertThat(price.getPriceList()).isNotZero();

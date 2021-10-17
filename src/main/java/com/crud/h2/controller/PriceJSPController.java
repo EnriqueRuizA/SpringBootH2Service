@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.crud.h2.model.Price;
+import com.crud.h2.model.PriceModel;
 import com.crud.h2.service.PriceService;
 
 @Controller
@@ -20,7 +20,7 @@ public class PriceJSPController {
 
 	@GetMapping("/listaPreciosJSP")
 	public String allPricesJSP(Model model) {
-		List<Price> list = service.getAllPrices();
+		List<PriceModel> list = service.getAllPrices();
 		model.addAttribute("listaPrecios", list);
 		return "listaPrecios";
 	}
