@@ -50,7 +50,7 @@
 							${precio.getEndDate()}
 						</th>
 						<th id="Price">
-							${precio.getCurrentPrice()}
+							${precio.getPrice()}
 						</th>
 					</tr>
 				</c:forEach>
