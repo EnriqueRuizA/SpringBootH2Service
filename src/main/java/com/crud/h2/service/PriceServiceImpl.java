@@ -8,9 +8,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.crud.h2.dao.PricesDao;
 import com.crud.h2.model.Price;
 import com.crud.h2.model.PriceWithRestrictions;
-import com.crud.h2.modelDAO.PricesDao;
 
 @Service
 public class PriceServiceImpl implements PriceService {
@@ -34,7 +34,7 @@ public class PriceServiceImpl implements PriceService {
 			PriceWithRestrictions priceWithRestrictions = new PriceWithRestrictions();
 			priceWithRestrictions.setBrandId(price.getBrandId());
 			priceWithRestrictions.setEndDate(price.getEndDate());
-			priceWithRestrictions.setPrice(price.getPrice());
+			priceWithRestrictions.setPrice(price.getCurrentPrice());
 			priceWithRestrictions.setPriceList(price.getPriceList());
 			priceWithRestrictions.setProductId(price.getProductId());
 			priceWithRestrictions.setStartDate(price.getStartDate());

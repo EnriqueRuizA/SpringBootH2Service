@@ -1,4 +1,4 @@
-package com.crud.h2.modelDAO;
+package com.crud.h2.dao;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -55,7 +55,7 @@ class SpringBootH2ServiceApplicationTests {
 		for(Price price : response) {
 			assertThat(price.getBrandId()).isEqualTo(response.get(0).getBrandId());
 			assertThat(price.getBrandId()).isNotZero();
-			assertThat(price.getPrice()).isNotNull();
+			assertThat(price.getCurrentPrice()).isNotNull();
 			assertThat(price.getStartDate()).isNotNull();
 			assertThat(price.getEndDate()).isNotNull();
 			assertThat(price.getPriceList()).isNotZero();

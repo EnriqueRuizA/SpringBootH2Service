@@ -4,13 +4,9 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
 
 @NoArgsConstructor
 @Getter
@@ -24,7 +20,7 @@ public class Price {
 	private int priceList;
 	private Long productId;
 	private int priority;
-	private Float price;
+	private Float currentPrice;
 	private String currency;
 	private Date lastUpdate;
 	private String lastUpdateBy;

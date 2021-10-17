@@ -3,7 +3,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="es" xml:lang="es">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -12,21 +12,22 @@
 <body>
 	<div class = "container mt-4">
 		<table class = "table">
+			<caption>Lista de precios</caption>
 			<thead>
 				<tr>
-					<th>
+					<th id="Producto">
 						Producto
 					</th>
-					<th>
+					<th id="Cadena">
 						Cadena
 					</th>
-					<th>
+					<th id="Tarifa">
 						Tarifa
 					</th>
-					<th>
+					<th id="Fecha de aplicación">
 						Fecha de aplicación
 					</th>
-					<th>
+					<th id="Precio">
 						Precio
 					</th>
 				</tr>
@@ -34,22 +35,22 @@
 			<tbody>
 				<c:forEach var ="precio" items="#{listaPrecios}">
 					<tr>
-						<th>
+						<th id="ProductId">
 							${precio.getProductId()}
 						</th>
-						<th>
+						<th id="BrandId">
 							${precio.getBrandId()}
 						</th>
-						<th>
+						<th id="PriceList">
 							${precio.getPriceList()}	
 						</th>
-						<th>
-							${precio.startDate}
+						<th id="StartEndDate">
+							${precio.getStartDate()}
 							-
-							${precio.endDate}
+							${precio.getEndDate()}
 						</th>
-						<th>
-							${precio.price}
+						<th id="Price">
+							${precio.getCurrentPrice()}
 						</th>
 					</tr>
 				</c:forEach>
