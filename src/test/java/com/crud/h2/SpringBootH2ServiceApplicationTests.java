@@ -46,27 +46,32 @@ class SpringBootH2ServiceApplicationTests extends TestUtils {
 	
 	@Test
 	void validateKnownFilteredPrice1() throws ParseException, Exception {
-		validateKnownFilteredPrice("2020-06-14 00:00:00", 35455L, 1, 35.5F, 1,new Timestamp(stringToMilis("2020/06/14 00:00:00")), new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarRespuestaEsperada("2020-06-14 00:00:00", 35455L, 1, 35.5F, 1,new Timestamp(stringToMilis("2020/06/14 00:00:00")), new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarFechasCoherentes("2020-06-14 10:00:00", 35455L, 1);
 	}
 	
 	@Test
 	void validateKnownFilteredPrice2() throws ParseException, Exception {
-		validateKnownFilteredPrice("2020-06-14 16:00:00", 35455L, 1, 35.5F, 1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarRespuestaEsperada("2020-06-14 16:00:00", 35455L, 1, 35.5F, 1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarFechasCoherentes("2020-06-14 16:00:00", 35455L, 1);
 	}
 	
 	@Test
 	void validateKnownFilteredPrice3() throws ParseException, Exception {
-		validateKnownFilteredPrice("2020-06-14 21:00:00", 35455L, 1, 35.5F, 1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarRespuestaEsperada("2020-06-14 21:00:00", 35455L, 1, 35.5F, 1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarFechasCoherentes("2020-06-14 21:00:00", 35455L, 1);
 	}
 	
 	@Test
 	void validateKnownFilteredPrice4() throws ParseException, Exception {
-		validateKnownFilteredPrice("2020-06-15 10:00:00", 35455L,1, 35.5F, 1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarRespuestaEsperada("2020-06-15 10:00:00", 35455L,1, 35.5F, 1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarFechasCoherentes("2020-06-15 10:00:00", 35455L, 1);
 	}
 	
 	@Test
 	void validateKnownFilteredPrice5() throws ParseException, Exception {
-		validateKnownFilteredPrice("2020-06-16 21:00:00", 35455L, 1, 35.5F,1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarRespuestaEsperada("2020-06-16 21:00:00", 35455L, 1, 35.5F,1, new Timestamp(stringToMilis("2020/06/14 00:00:00")),new Timestamp(stringToMilis("2020/12/31 23:59:59")));
+		validarFechasCoherentes("2020-06-16 21:00:00", 35455L, 1);
 	}
 	
 
@@ -84,31 +89,6 @@ class SpringBootH2ServiceApplicationTests extends TestUtils {
 			assertThat(price.getProductId()).isNotNull();
 		}
 	}
-
-	@Test
-	void dateRange1() throws Exception {
-		validarFechasPrecioCoherente("2020-06-14 10:00:00", 35455L, 1);
-	}
-
-	@Test
-	void dateRange2() throws Exception {
-		validarFechasPrecioCoherente("2020-06-14 16:00:00", 35455L, 1);
-	}
-
-	@Test
-	void dateRange3() throws Exception {
-		validarFechasPrecioCoherente("2020-06-14 21:00:00", 35455L, 1);
-	}
-
-	@Test
-	void dateRange4() throws Exception {
-		validarFechasPrecioCoherente("2020-06-15 10:00:00", 35455L, 1);
-	}
-
-	@Test
-	void dateRange5() throws Exception {
-		validarFechasPrecioCoherente("2020-06-16 21:00:00", 35455L, 1);
-	}
 	
 	/**
 	 * 
@@ -117,7 +97,7 @@ class SpringBootH2ServiceApplicationTests extends TestUtils {
 	 * @param brandId
 	 * @throws Exception
 	 */
-	void validarFechasPrecioCoherente(String date, Long productId, int brandId) throws Exception {
+	void validarFechasCoherentes(String date, Long productId, int brandId) throws Exception {
 		List<PriceWithRestrictions> response = service.filteredPrices(date, productId, brandId);
 		assertThat(response.get(0).getBrandId()).isEqualTo(brandId);
 		assertThat(stringToDate(date)).isBetween(response.get(0).getStartDate(), response.get(0).getEndDate());
@@ -135,7 +115,7 @@ class SpringBootH2ServiceApplicationTests extends TestUtils {
 	 * @param expectedEndDate
 	 * @throws Exception
 	 */
-	void validateKnownFilteredPrice(String date, Long productId, int brandId, float expectedPrice,int expectedPriceList, Timestamp expectedStartDate, Timestamp expectedEndDate) throws Exception {
+	void validarRespuestaEsperada(String date, Long productId, int brandId, float expectedPrice,int expectedPriceList, Timestamp expectedStartDate, Timestamp expectedEndDate) throws Exception {
 		List<PriceWithRestrictions> response = service.filteredPrices(date, productId, brandId);
 		assertThat(response.get(0).getBrandId()).isEqualTo(response.get(0).getBrandId());
 		assertThat(response.get(0).getBrandId()).isEqualTo(brandId);
